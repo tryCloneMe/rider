@@ -3,11 +3,9 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"os"
 )
 
 func main() {
-	PORT := os.Getenv("PORT")
 
 	http.Handle("/", http.FileServer(http.Dir("./static")))
 
