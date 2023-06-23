@@ -11,7 +11,7 @@ func main() {
 
 	http.Handle("/", http.FileServer(http.Dir("./static")))
 
-	err := http.ListenAndServe(PORT, nil)
+	err := http.ListenAndServe(":80", nil)
 	if err != nil {
 		fmt.Println("Error", err)
 	}
