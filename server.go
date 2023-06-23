@@ -8,9 +8,9 @@ import (
 
 func main() {
 	PORT := os.Getenv("PORT")
-	http.HandleFunc("/a", func(w http.ResponseWriter, req *http.Request) {
-		fmt.Fprintf(w, "Hey, Developers!")
-	})
+
+	http.Handle("/", http.FileServer(http.Dir("./static")))
+
 	err := http.ListenAndServe(PORT, nil)
 	if err != nil {
 		fmt.Println("Error", err)
