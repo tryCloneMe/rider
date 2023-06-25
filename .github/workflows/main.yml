@@ -17,13 +17,23 @@ jobs:
       - name: Install dependencies
         run: go get .
       - name: Build
-        run: go build -v ./...
+        run: go build -v -o my-app ./...
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: built-app
+          path: ./
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: built-app
+          path: ./built-app
       - name: Deploy to render.com
         uses: render-actions/deploy@1.2.0
         with:
@@ -31,9 +41,6 @@ jobs:
           render_yaml: |
             services:
               - name: my-app
-                env:
-                  - key: MY_ENV_VAR
-                    value: my-value
-                buildCommand: go build -o ./my-app
-                startCommand: ./my-app
+                buildCommand: echo "Build step skipped"
+                startCommand: ./built-app/my-app
                 healthCheckPath: /health
