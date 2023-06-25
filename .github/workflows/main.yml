@@ -1,4 +1,4 @@
-name: Go
+name: Go Deploy Workflow
 on:
   push:
     branches:
@@ -13,7 +13,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: "1.20.5"
+          go-version: '1.20.5'
       - name: Install dependencies
         run: go get .
       - name: Build
@@ -28,4 +28,12 @@ jobs:
         uses: render-actions/deploy@1.2.0
         with:
           render_token: ${{ secrets.RENDER_TOKEN }}
-          render_yaml: path/to/render.yaml
+          render_yaml: |
+            services:
+              - name: my-app
+                env:
+                  - key: MY_ENV_VAR
+                    value: my-value
+                buildCommand: go build -o ./my-app
+                startCommand: ./my-app
+                healthCheckPath: /health
