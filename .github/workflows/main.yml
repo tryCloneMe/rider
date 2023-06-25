@@ -1,0 +1,46 @@
+name: Go Deploy Workflow
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20.5'
+      - name: Install dependencies
+        run: go get .
+      - name: Build
+        run: go build -v -o my-app ./...
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: built-app
+          path: ./
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: built-app
+          path: ./built-app
+      - name: Deploy to render.com
+        uses: render-actions/deploy@1.2.0
+        with:
+          render_token: ${{ secrets.RENDER_TOKEN }}
+          render_yaml: |
+            services:
+              - name: my-app
+                buildCommand: echo "Build step skipped"
+                startCommand: ./built-app/my-app
+                healthCheckPath: /health
