@@ -35,12 +35,7 @@ jobs:
           name: built-app
           path: ./built-app
       - name: Deploy to render.com
-        uses: render-actions/deploy@1.2.0
+        uses: johnbeynon/render-deploy-action@v0.0.8
         with:
-          render_token: ${{ secrets.RENDER_TOKEN }}
-          render_yaml: |
-            services:
-              - name: my-app
-                buildCommand: echo "Build step skipped"
-                startCommand: ./built-app/my-app
-                healthCheckPath: /health
+          service-id: ${{ secrets.SERVICE_ID }}
+          api -key: ${{ secrets.RENDER_TOKEN }}
