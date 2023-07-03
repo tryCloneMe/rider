@@ -12,7 +12,7 @@ var Connection *sql.DB
 func InitDB () {
 	connection := fmt.Sprintf(
 		"user=%s password=%s host=%s port=%d dbname=%s sslmode=disable",
-		"postgres", "postgres", "localhost", 5432, "postgres",
+		"postgres", "postgres", "db", 5432, "postgres",
 	)
 
 	var err error
