@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY go.mod ./
 COPY *.go ./
-COPY static ./static
+COPY frontend/dist ./frontend/dist
 
 RUN go build -o app
 
