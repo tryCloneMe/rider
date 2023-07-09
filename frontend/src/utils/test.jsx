@@ -1,3 +1,6 @@
+export const fetchInterval = 1000;
+export const refreshInterval = 33;
+
 const path = [
   [8, 17],
   [8, 16],
@@ -67,3 +70,17 @@ const records = [
   },
 ];
 export default records;
+
+
+// const [cars, setCars] = useState([
+//   {
+//     id: "car1",
+//     next: [50, 50],
+//     rotation: 0,
+//   },
+//   {
+//     id: "car2",
+//     next: [260, 110],
+//     rotation: 90,
+//   },
+// ]);

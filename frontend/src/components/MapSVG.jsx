@@ -1,20 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { objects } from "../objects";
 import Cars from "./Cars";
+import records, { fetchInterval } from "../utils/test";
+import { wait } from "../utils/wait";
 
 const MapSVG = () => {
-  const [cars, setCars] = useState([
-    {
-      id: "car1",
-      next: [50, 50],
-      rotation: 0,
-    },
-    {
-      id: "car2",
-      next: [260, 120],
-      rotation: 270,
-    },
-  ]);
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    simulate();
+  }, []);
+
+  const simulate = async () => {
+    for (const record of records) {
+      setCars([record]);
+      await wait(fetchInterval);
+    }
+  };
+
   const gridSize = 500;
   const gridCount = 31;
 
@@ -61,8 +64,11 @@ const MapSVG = () => {
       <svg width={gridSize} height={gridSize}>
         {obstacleElems}
       </svg>
-      {cars.map(({ id, next, rotation }) => {
-        return <Cars key={id} next={next} rotation={rotation} />;
+      {console.log(cars)}
+      {cars.map(({ id, next, rotation, path }) => {
+        return (
+          <Cars key={id} next={next} rotation={rotation || 0} path={path} />
+        );
       })}
     </div>
   );
