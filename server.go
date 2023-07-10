@@ -32,11 +32,7 @@ func getDrivers(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-	db.InitDB()
-	defer db.Connection.Close()
-
-	http.Handle("/", http.FileServer(http.Dir("./static")))
-	http.HandleFunc("/drivers", getDrivers)
+	http.Handle("/", http.FileServer(http.Dir("./frontend/dist")))
 
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
