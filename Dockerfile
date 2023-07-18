@@ -2,14 +2,14 @@ FROM golang:1.18-alpine
 
 WORKDIR /app
 
-COPY go.mod ./
-COPY go.sum ./
-COPY *.go ./
-COPY static ./static
-COPY postgres ./postgres
+COPY go.mod go.sum *.go ./
 
+# COPY static ./static
+# COPY postgres ./postgres
+
+RUN go mod download
 RUN go build -o /app
 
-EXPOSE 80
+EXPOSE 8081
 
 CMD [ "./app" ]
