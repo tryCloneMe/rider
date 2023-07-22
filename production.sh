@@ -1,7 +1,7 @@
 #!/bin/bash
 SECONDS=0
 
-cd $HOME/app
+cd $HOME/rider
 
 msg () {
   echo -e "\n$1\n--------------------\n"
