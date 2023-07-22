@@ -8,7 +8,7 @@ msg () {
 }
 
 msg "Pulling from GitHub"
-git pull origin master
+git pull
 
 msg "Building the 'app' image"
 sudo docker build -t rider .
