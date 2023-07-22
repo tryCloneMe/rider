@@ -14,10 +14,10 @@ msg "Building the 'app' image"
 sudo docker build -t rider .
 
 msg "Stopping containers"
-sudo docker compose down
+sudo docker-compose down
 
 msg "Starting containers"
-sudo docker compose up -d
+sudo docker-compose up -d
 
 msg "Pruning stale Docker images"
 sudo docker image prune -f
