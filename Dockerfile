@@ -7,8 +7,8 @@ COPY go.mod go.sum *.go ./
 COPY postgres ./postgres
 
 RUN go mod download
-RUN go build -o /app
+RUN go build -o /main
 
-EXPOSE 8081
+EXPOSE 8080
 
-CMD [ "./app" ]
+CMD [ "/main" ]

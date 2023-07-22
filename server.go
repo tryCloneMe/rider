@@ -1,7 +1,7 @@
 package main
 
 import (
-	db "app/postgres"
+	db "rider/postgres"
 	"fmt"
 	"net/http"
 )
@@ -12,6 +12,7 @@ func getDrivers(w http.ResponseWriter, req *http.Request) {
 		fmt.Println(err)
 		return
 	}
+	defer rows.Close()
 
 	data := ""
 	for rows.Next() {
@@ -28,7 +29,6 @@ func getDrivers(w http.ResponseWriter, req *http.Request) {
 		fmt.Println(err)
 	}
 	fmt.Fprintf(w, data)
-	rows.Close()
 }
 
 func main() {

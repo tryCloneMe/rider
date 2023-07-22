@@ -10,14 +10,14 @@ import (
 var Connection *sql.DB
 
 func InitDB () {
-	connection := fmt.Sprintf(
+	connStr := fmt.Sprintf(
 		"user=%s password=%s host=%s port=%d dbname=%s sslmode=disable",
 		"postgres", "postgres", "db", 5432, "postgres",
 	)
 
 	var err error
-	Connection, err =sql.Open("postgres", connection)
+	Connection, err = sql.Open("postgres", connStr)
 	if err != nil {
-		fmt.Print(err)
+		fmt.Println(err)
 	}
 }

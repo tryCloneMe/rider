@@ -1,23 +1,23 @@
 #!/bin/bash
 SECONDS=0
 
-cd $HOME/rider
+cd $HOME/app
 
 msg () {
-  echo -e "$1\n--------------------\n"
+  echo -e "\n$1\n--------------------\n"
 }
 
 msg "Pulling from GitHub"
 git pull
 
-msg "Building Docker image"
+msg "Building the 'app' image"
 sudo docker build -t rider .
 
 msg "Stopping containers"
 sudo docker compose down
 
 msg "Starting containers"
-sudo docker compose -d
+sudo docker compose up -d
 
 msg "Pruning stale Docker images"
 sudo docker image prune -f

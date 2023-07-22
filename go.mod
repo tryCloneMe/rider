@@ -1,4 +1,4 @@
-module app
+module rider
 
 go 1.20
 
