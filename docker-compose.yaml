@@ -1,6 +1,6 @@
 services:
   app:
-    image: app
+    image: rider
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
   db:
@@ -8,10 +8,10 @@ services:
     ports:
       - ${DB_PORT}:${DB_PORT}
     volumes:
-      - app-db:/var/lib/postgresql/data
+      - rider-db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD : postgres
 
 volumes:
-  app-db:
+  rider-db:
     external: true

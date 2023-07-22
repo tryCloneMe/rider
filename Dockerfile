@@ -4,8 +4,7 @@ WORKDIR /app
 
 COPY go.mod go.sum *.go ./
 
-# COPY static ./static
-# COPY postgres ./postgres
+COPY postgres ./postgres
 
 RUN go mod download
 RUN go build -o /app
