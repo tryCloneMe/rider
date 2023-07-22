@@ -20,6 +20,14 @@ sudo docker rm rider
 msg "Starting Docker container"
 sudo docker run -d -p 8080:8080 rider
 
+msg "Starting Postgres container"
+sudo docker run -d \
+--name db-postgres \
+-p 5432:5432 \
+--mount type=volume,src=rider-db,target=/var/lib/postgresql/data \
+-e POSTGRES_PASSWORD=postgres \
+postgres:15.1-alpine
+
 msg "Pruning stale Docker images"
 sudo docker image prune -f
 
