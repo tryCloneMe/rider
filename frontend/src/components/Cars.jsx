@@ -17,7 +17,6 @@ const Cars = (props) => {
   const [rotateBusy, setRotateBusy] = useState(false);
 
   useEffect(() => {
-    setRotateBusy(false);
     setPosition(props.next);
     setRotation(finalRotation(props.path, 1));
   }, [props]);
@@ -28,8 +27,7 @@ const Cars = (props) => {
     let myRotation = rotation;
     const targetRotation = finalRotation(section, i);
     if (rotation === targetRotation) {
-      setRotateBusy(false);
-      return;
+      return setRotateBusy(false);
     }
 
     const { Clockwise, AntiClockwise } = getTurnDistance(

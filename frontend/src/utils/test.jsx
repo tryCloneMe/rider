@@ -2,18 +2,7 @@ export const fetchInterval = 1000;
 export const refreshInterval = 33;
 
 const path = [
-  [30, 30],
-  [18, 18],
-  [18, 19],
-  [18, 20],
-  [18, 21],
-  [18, 22],
-  [18, 23],
-  [18, 24],
-  [18, 25],
-  [18, 26],
-  [18, 28],
-  [25, 28],
+  [8, 17],
   [8, 16],
   [8, 15],
   [8, 14],
@@ -45,38 +34,38 @@ const path = [
   [14, 14],
   [15, 14],
   [16, 14],
-  [16, 13],
+  [16, 13]
 ];
 
 const records = [
   {
-    id: "car1",
-    next: [8, 11],
+    id: 'car1',
+    next: [8,17],
     path,
   },
   {
-    id: "car1",
-    next: [8, 28],
+    id: 'car1',
+    next: [7,14],
     path,
   },
   {
-    id: "car1",
-    next: [25, 28],
+    id: 'car1',
+    next: [6,7],
     path,
   },
   {
-    id: "car1",
-    next: [25, 6],
+    id: 'car1',
+    next: [11,6],
     path,
   },
   {
-    id: "car1",
-    next: [2, 6],
+    id: 'car1',
+    next: [12,11],
     path,
   },
   {
-    id: "car1",
-    next: [2, 1],
+    id: 'car1',
+    next: [16,13],
     path,
   },
 ];

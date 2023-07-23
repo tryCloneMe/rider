@@ -31,7 +31,7 @@ export const advanceCoord = (curr, next, increment) => {
 const getDirection = (section, i) => {
   // console.log(section)
   console.log(section)
-  const x0 = section[0][0];
+  const x0 = section[i-1][0];
   const x1 = section[i][0];
   x1 === x0 ? "y" : "x";
 };
@@ -40,7 +40,7 @@ export const countTurns = (section) => {
   let count = 0;
   let currentDirection = getDirection(section, 1);
 
-  for (let i = 0; i < section.length; i++) {
+  for (let i = 2; i < section.length; i++) {
     let newDirection = getDirection(section, i);
     if (newDirection !== currentDirection) {
       currentDirection = newDirection;
@@ -52,7 +52,7 @@ export const countTurns = (section) => {
 
 export const finalRotation = (path, i) => {
   const [x0, y0] = path[i - 1];
-  const [x1, y1] = path[i - 1];
+  const [x1, y1] = path[i];
   const direction = x1 === x0 ? "y" : "x";
 
   if (direction === "x" && x1 > x0) return 90;
